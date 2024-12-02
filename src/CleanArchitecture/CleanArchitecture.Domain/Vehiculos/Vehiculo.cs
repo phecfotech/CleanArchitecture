@@ -1,22 +1,29 @@
 namespace CleanArchitecture.Domain.Vehiculos;
 
-public sealed class Vehiculo
+public sealed class Vehiculo: Entity
 {
+    public Vehiculo( Guid id, Modelo modelo, Vin vin , Moneda precio, Moneda mantenimiento,  DateTime? fechaUltimoAlquiler, 
+        List<Accesorios> accesorios, Direccion? direccion): base (id){
+            Modelo = modelo;
+            Vin = vin;
+            Precio = precio;
+            Mantenimiento = mantenimiento;
+            FechaUltimoAlquiler = fechaUltimoAlquiler;
+            Accesorios = accesorios;
+            Direccion = direccion;
+
+       
+    }
+
     public Guid Id { get; private set; }
-    public string? Modelo { get; private set; }
-    public string? Vin { get; private set; }
-    
-public string? Calle {get; private set;}
-public string? Departamento {get; private set; }
-public string? Provincia {get; private set; }
-public string? Ciudad {get; private set; }
-public string? Pais {get; private set; }
-public decimal Precio {get; private set;}
+    public Modelo? Modelo { get; private set; }
+    public Vin? Vin { get; private set; }
 
-public string? TipoMoneda {get; private set;} O references
-public decimal Mantenimiento {get; private set;}
+    public Direccion? Direccion {get; private set;}
+    public Moneda Precio {get; private set;}
+public  Moneda Mantenimiento {get; private set;}
 
-public string? MantenimientoTipoMoneda {get; private set;}
+    public DateTime? FechaUltimoAlquiler { get; private set};
 
-public DateTime? FechaUltimoAlquiler get; private set; 
+    public List<Accesorio> Accesorios { get; private set}
 }
