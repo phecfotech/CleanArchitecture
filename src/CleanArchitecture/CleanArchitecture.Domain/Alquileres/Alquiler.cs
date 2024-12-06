@@ -33,16 +33,27 @@ public sealed class Alquiler : Entity
     public DateTime? FechaCanelacion { get; private set; }
 
     public static Alquiler Reservar(
-        Guid vehiculoId, Guid userId, DateRange duracion, DateTime fechaCreacion, PrecioDetalle precioDetalle
+        Guid vehiculoId, Guid userId, DateRange duracion, DateTime fechaCreacion, PrecioService precioService
     )
     {
-
+var  precioDetalle = precioService.CalcularPrecio(vehiculo, duracion);
         var alquiler = new Alquiler(Guid.NewGuid(),
             vehiculoId, userId, duracion, fechaCreacion, precioDetalle.PrecioPorPeriodo, precioDetalle.Mantenimiento,
             precioDetalle.Accesorios,
             AlquilerStatus.Reservado);
 
         alquiler.RaiseDomainEvent( new AlquilerReservadoDomainEvent(alquiler))
+
+        vehiculo.fechaUltimoAlquiler = fechaCreacion;
             return alquiler;
+    }
+
+    public Result Confirmar (DateTime utcNow)
+    {
+        if(Status !=AlquilerStatus.Reservado)
+        {
+            //se dispare una exception 
+             
+        }
     }
 }
