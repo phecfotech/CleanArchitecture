@@ -102,4 +102,23 @@ var  precioDetalle = precioService.CalcularPrecio(vehiculo, duracion);
 
         return Result.Sucess();
     }
+
+
+     public Result Completar(DateTime utcNow)
+    {
+
+        if(Status != AlquierStatus.Confirmado)
+        {
+            return Result.Failure(AlquilerErrors.NotConfirmado);
+
+        }
+
+        Status = AlquierStatus.Completado;
+        FechaCompletado = utcNow;
+        RaiseDomainEvent(new AlquilerCompletadoDomainEvent(Id));
+
+        return Result.Sucess();
+    }
+
 }
+
