@@ -52,8 +52,54 @@ var  precioDetalle = precioService.CalcularPrecio(vehiculo, duracion);
     {
         if(Status !=AlquilerStatus.Reservado)
         {
-            //se dispare una exception 
+            return Result.Failure(AlquilerErrors.NotReserved);
              
         }
+
+        Status = AlquierStatus.Confirmado;
+        FechaConfirmacion = utcNow;
+
+        RaiseDomainEvent(new AlquilerConfirmadoDomainEvent(Id));
+
+        return Result.Success();
+    }
+
+
+    public Result Rechazar(DateTime utcNow)
+    {
+
+        if(Status != AlquierStatus.Reservado)
+        {
+            return Result.Failure(AlquilerErrors.NotReserved);
+
+        }
+
+        Status = AlquierStatus.Rechazado;
+        FechaDenagacion = utcNow;
+        RaiseDomainEvent(new AlquilerRechazadoDomainEvent(Id));
+
+        return Result.Sucess();
+    }
+
+    public Result Cancelar(DateTime utcNow)
+    {
+
+        if(Status != AlquierStatus.Confirmado)
+        {
+            return Result.Failure(AlquilerErrors.NotConfirmado);
+
+        }
+
+        var currentDate = DateOnly.FromDateTime(utcNow);
+        if(currentDate > Duracion!.Inicio)
+        {
+            return Resutl.Failure(AlquilerErrors.AlreadyStared);
+        }
+
+        Status = AlquierStatus.Cancelado;
+        FechaCanelacion = utcNow;
+        RaiseDomainEvent(new AlquilerCanceladoDomainEvent(Id));
+
+        return Result.Sucess();
     }
 }
