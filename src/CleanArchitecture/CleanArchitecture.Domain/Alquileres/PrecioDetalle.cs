@@ -1,4 +1,10 @@
-namespace CleanArchitecture.Domain.Alquileres;
+using CleaArchitecture.Domain.Shared;
 
-public record PrecioDetalle (Mondeda PrecioPorPeriodo, 
-Mondeda Mantenimiento, Mondeda Accesorios, Mondeda PrecioTotal);
+namespace CleaArchitecture.Domain.Alquileres;
+
+public record PrecioDetalle(
+    Moneda PrecioPorPeriodo,
+    Moneda Mantenimiento,
+    Moneda Accesorios,
+    Moneda PrecioTotal
+);

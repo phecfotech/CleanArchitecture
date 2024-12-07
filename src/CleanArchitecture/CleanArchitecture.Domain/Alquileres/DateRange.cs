@@ -1,4 +1,5 @@
-namespace CleanArchitecture.Domain.Alquileres;
+namespace CleaArchitecture.Domain.Alquileres;
+
 
 public sealed record DateRange
 {
@@ -12,17 +13,22 @@ public sealed record DateRange
 
     public int CantidadDias => Fin.DayNumber - Inicio.DayNumber;
 
-    public static DateRange Create(DateOnly incio, DateOnly fin){
+    public static DateRange Create(DateOnly inicio, DateOnly fin)
+    {
         if(inicio > fin)
         {
-            throw new ApplicationException("La fecha final es anterior a la fecha de inicio")
+            throw new 
+            ApplicationException("La fecha final es anterior a la fecha de inicio");
         }
 
         return new DateRange
         {
-            incio = incio,
-            fin = fin
+            Inicio = inicio,
+            Fin = fin
         };
+
     }
+
+
 
 }

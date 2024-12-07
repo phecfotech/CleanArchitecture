@@ -1,7 +1,8 @@
 using MediatR;
-namespace CleanArchitecture.Domain.Abstractions;
+
+namespace CleaArchitecture.Domain.Abstractions;
 
 public interface IDomainEvent : INotification
 {
-
+    
 }

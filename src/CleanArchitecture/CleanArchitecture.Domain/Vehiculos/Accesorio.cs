@@ -1,9 +1,9 @@
-namespace CleanArchitecture.Domain.Vehiculos;
+namespace CleaArchitecture.Domain.Vehiculos;
 
 public enum Accesorio
 {
     Wifi = 1,
-    AireAcondicinoado = 2,
+    AireAcondicionado = 2,
     AppleCar = 3,
     AndroidCar = 4,
     Mapas = 5

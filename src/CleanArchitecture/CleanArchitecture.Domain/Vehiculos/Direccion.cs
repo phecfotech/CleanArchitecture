@@ -1,7 +1,9 @@
-namespace CleanArchitecture.Domain.Vehiculos;
+namespace CleaArchitecture.Domain.Vehiculos;
 
-public record Direccion(
-    string Pais, 
+
+public record Direccion
+(
+    string Pais,
     string Departamento,
     string Provincia,
     string Ciudad,

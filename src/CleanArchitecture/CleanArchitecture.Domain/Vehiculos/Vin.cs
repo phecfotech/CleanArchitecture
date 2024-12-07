@@ -1,3 +1,3 @@
-namespace CleanArchitecture.Domain.Vehiculos;
+namespace CleaArchitecture.Domain.Vehiculos;
 
-public record Vin(string value);
+public record Vin(string Value);
